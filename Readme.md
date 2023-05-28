@@ -10,7 +10,7 @@
   - TODO: (Calculator operations)
   - TODO: (String Concat operations)
 
-- 3. Develop a distributed system, to find sum of N elements in an array by distributing N/n elements to n number of processors MPI or OpenMP. Demonstrate by displaying the intermediate sums calculated at different processors. (2)
+- 3. TODO: Develop a distributed system, to find sum of N elements in an array by distributing N/n elements to n number of processors MPI or OpenMP. Demonstrate by displaying the intermediate sums calculated at different processors. (2)
 
 - 4. Implement Berkeley algorithm for clock synchronization. (1)
 
