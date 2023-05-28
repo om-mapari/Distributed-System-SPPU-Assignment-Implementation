@@ -20,4 +20,6 @@
 
 - 7. Create a simple web service and write any distributed application to consume the web service. (5)
 
--  To develop any distributed application through implementing client-server communication programs based on Java Sockets (2)
+- 8. Mini Project
+
+- 9. *Extra: To develop any distributed application through implementing client-server communication programs based on Java Sockets (2)
