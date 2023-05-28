@@ -1,4 +1,7 @@
-- SR.No.  Name  (frequency)
+![Logo](/Image/practical.png)
+
+
+##### SR.No.  Name  (frequency)
 
 - 1. Implement multi-threaded client/server Process communication using RMI. (1)
 
