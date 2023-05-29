@@ -170,3 +170,33 @@ public class Ring {
 		sc.close();
 	}
 }
+
+/*
+The given code implements the Ring election algorithm. Let's go through the code and understand how it works:
+
+1. The `Ring` class is defined with various methods and variables to handle the ring election algorithm.
+
+2. The constructor `Ring(int n)` initializes the class variables. It takes the number of processes `n` as input and sets all processes as active. The coordinator is set as the last process (n-1).
+
+3. The `deactivate_process(int id)` method deactivates a specific process. It takes the process ID as input and marks the process as inactive by setting its corresponding element in the `process_state` array to `false`. The `inactive_count` is incremented to keep track of the number of inactive processes.
+
+4. The `view_ring()` method displays the active processes in the ring. It iterates over the `process_state` array and prints the IDs of processes that are active.
+
+5. The `election(int id)` method initiates the election process. It takes an initiator's ID as input. If all processes are inactive, it aborts the election process. Otherwise, it starts the election algorithm by setting the current coordinator as the initiator and initializing a token to the next process in the ring.
+
+6. The election algorithm is implemented using a loop that passes the token through each process in the ring. Each active process checks if it has a higher ID than the current coordinator. If it does, it updates the current coordinator. The token moves to the next process in the ring using the modulo operator. After completing the loop, the elected coordinator is determined, and the `coordinator` variable is updated.
+
+7. The `ping_coordinator(int id)` method checks the status of the coordinator. If the process with the given ID is inactive, it aborts the ping process. If the process is the coordinator, it checks if the coordinator is active or not. If the coordinator is inactive, it initiates an election process from another active process. If the coordinator is active, a message is sent to the coordinator indicating that it is alive.
+
+8. The `setCoordinator(int c)` method allows manually setting the coordinator.
+
+9. In the `main` method, the user is prompted to enter the number of processes. An instance of the `Ring` class is created with the given number of processes.
+
+10. A menu is displayed, allowing the user to perform various actions: deactivate a process, ping the coordinator, view the ring, initiate an election, or exit the program.
+
+11. Based on the user's choice, the corresponding method of the `Ring` class is called.
+
+12. The program continues to loop until the user chooses to exit.
+
+Overall, this code implements a simple simulation of the Ring election algorithm, where processes can be deactivated, and the coordinator can be checked and updated.
+ */
