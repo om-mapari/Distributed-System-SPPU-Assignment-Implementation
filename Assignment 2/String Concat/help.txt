@@ -1,0 +1,8 @@
+idlj -fall StringConcatModule.idl
+javac *.java StringConcatModule/*.java
+orbd -ORBInitialPort 1050 &
+java StringConcatServer -ORBInitialPort 1050 -ORBInitialHost localhost &
+
+new terminal
+java StringConcatClient -ORBInitialPort 1050 -ORBInitialHost localhost
+

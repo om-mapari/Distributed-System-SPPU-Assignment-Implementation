@@ -1,0 +1,28 @@
+coderom@coderom-virtual-machine:~/Downloads/IDL CORBA$ idlj -fall Re
+Readme.docx         ReverseImpl.java    ReverseServer.java
+ReverseClient.java  ReverseModule.idl   
+coderom@coderom-virtual-machine:~/Downloads/IDL CORBA$ idlj -fall Re
+Readme.docx         ReverseImpl.java    ReverseServer.java
+coderom@coderom-virtual-machine:~/Downloads/IDL CORBA$ javac *.java ReverseModule/*.java
+Note: ReverseModule/ReversePOA.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+coderom@coderom-virtual-machine:~/Downloads/IDL CORBA$ orbd -ORBInitialPort 1050&
+[1] 12428
+coderom@coderom-virtual-machine:~/Downloads/IDL CORBA$ java ReverseServer -ORBInitialPort 1050& -ORBInitialHost localhost&
+[2] 12446
+[3] 12447
+coderom@coderom-virtual-machine:~/Downloads/IDL CORBA$ Reverse Object Created
+Step1
+Step2
+-ORBInitialHost: command not found
+Step3
+Step4
+Reverse Server reading and waiting....
+
+
+coderom@coderom-virtual-machine:~/Downloads/IDL CORBA$ java ReverseClient -ORBInitialPort 1050 -ORBInitialHost localhost
+Enter String=
+i don't know why am i executing these assignments               
+Server Send stnemngissa eseht gnitucexe i ma yhw wonk t'nod i
+
+

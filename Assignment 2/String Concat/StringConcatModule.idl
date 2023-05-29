@@ -1,0 +1,6 @@
+module StringConcatModule {
+    interface StringConcat {
+        string concatenate_strings(in string str1, in string str2);
+    };
+};
+
