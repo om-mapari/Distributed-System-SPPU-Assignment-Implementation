@@ -26,21 +26,21 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-client-MyCalculatorWebService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/MyCalculatorWebService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/MyCalculatorWebService" destdir="${build.generated.dir}/jax-wsCache/MyCalculatorWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/MyCalculatorWebService/wsdl/localhost_8080/Assignment-7/MyCalculatorWebService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/Assignment-7/MyCalculatorWebService?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/MyCalculatorWebService/wsdl/localhost_8080/Assignment-7/MyCalculatorWebService.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/MyCalculatorWebService"/>
+    <target name="wsimport-client-MyCalculaterWebService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/MyCalculaterWebService"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/MyCalculaterWebService" destdir="${build.generated.dir}/jax-wsCache/MyCalculaterWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/MyCalculaterWebService/wsdl/localhost_8080/Assignment-7/MyCalculaterWebService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/Assignment-7/MyCalculaterWebService?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/MyCalculaterWebService/wsdl/localhost_8080/Assignment-7/MyCalculaterWebService.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/MyCalculaterWebService"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/MyCalculatorWebService">
+            <fileset dir="${build.generated.dir}/jax-wsCache/MyCalculaterWebService">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-MyCalculatorWebService" depends="-init-project">
+    <target name="wsimport-client-clean-MyCalculaterWebService" depends="-init-project">
         <delete dir="${build.generated.sources.dir}/jax-ws/com/myservice"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/MyCalculatorWebService"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/MyCalculaterWebService"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-MyCalculatorWebService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-MyCalculaterWebService"/>
 </project>

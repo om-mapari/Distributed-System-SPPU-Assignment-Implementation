@@ -1,10 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-import com.myservice.MyCalculatorWebService_Service;
+import com.myservice.MyCalculaterWebService_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,12 +14,12 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author ommap
+ * @author coderom
  */
 public class CalculatorServlet extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/Assignment-7/MyCalculatorWebService.wsdl")
-    private MyCalculatorWebService_Service service;
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/Assignment-7/MyCalculaterWebService.wsdl")
+    private MyCalculaterWebService_Service service;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,23 +33,25 @@ public class CalculatorServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             double num1, num2;
+            num1 = Double.parseDouble(request.getParameter("num1"));
+            num2 = Double.parseDouble(request.getParameter("num2"));
             
-            num1 = Double.parseDouble(request.getParameter("number1"));
-            num2 = Double.parseDouble(request.getParameter("number2"));
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Calculator Servelet Output</title>");            
+            out.println("<title>Servlet CalculatorServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Addition Is: " + addition(num1, num2) + "</h1>");
-            out.println("<h1>Subtraction Is: " + subtraction(num1, num2) + "</h1>");
-            out.println("<h1>Multiplication Is: " + multiplication(num1, num2) + "</h1>");
-            out.println("<h1>Division Is: " + division(num1, num2) + "</h1>");
+            out.println("<h1> Addition is : " + addition(num1, num2)+ "</h1>");
+            out.println("<h1> Subraction is : " + subraction(num1, num2)+ "</h1>");
+            out.println("<h1> Multiplication is : " + multi(num1, num2)+ "</h1>");
+            out.println("<h1> Division is : " + division(num1, num2)+ "</h1>");
+            
+            
             out.println("</body>");
             out.println("</html>");
         }
@@ -98,30 +99,30 @@ public class CalculatorServlet extends HttpServlet {
     private double addition(double num1, double num2) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
-        com.myservice.MyCalculatorWebService port = service.getMyCalculatorWebServicePort();
+        com.myservice.MyCalculaterWebService port = service.getMyCalculaterWebServicePort();
         return port.addition(num1, num2);
-    }
-
-    private double subtraction(double num1, double num2) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        com.myservice.MyCalculatorWebService port = service.getMyCalculatorWebServicePort();
-        return port.subtraction(num1, num2);
-    }
-
-    private double multiplication(double num1, double num2) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        com.myservice.MyCalculatorWebService port = service.getMyCalculatorWebServicePort();
-        return port.multiplication(num1, num2);
     }
 
     private double division(double num1, double num2) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
-        com.myservice.MyCalculatorWebService port = service.getMyCalculatorWebServicePort();
+        com.myservice.MyCalculaterWebService port = service.getMyCalculaterWebServicePort();
         return port.division(num1, num2);
     }
 
+    private double multi(double num1, double num2) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        com.myservice.MyCalculaterWebService port = service.getMyCalculaterWebServicePort();
+        return port.multi(num1, num2);
+    }
+
+    private double subraction(double num1, double num2) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        com.myservice.MyCalculaterWebService port = service.getMyCalculaterWebServicePort();
+        return port.subraction(num1, num2);
+    }
     
+
 }

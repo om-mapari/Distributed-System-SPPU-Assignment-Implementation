@@ -2,9 +2,9 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="MyCalculatorWebService">
-      <wsdl-url>http://localhost:8080/Assignment-7/MyCalculatorWebService?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8080/Assignment-7/MyCalculatorWebService.wsdl</local-wsdl-file>
+    <client name="MyCalculaterWebService">
+      <wsdl-url>http://localhost:8080/Assignment-7/MyCalculaterWebService?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/Assignment-7/MyCalculaterWebService.wsdl</local-wsdl-file>
       <package-name>com.myservice</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/Assignment-7/MyCalculatorWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/Assignment-7/MyCalculaterWebService?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
