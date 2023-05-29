@@ -52,6 +52,7 @@ Server Send stnemngissa eseht gnitucexe i ma yhw wonk t'nod i
 
 
 
+> idl file
 
 ```idl
 module ReverseModule {
@@ -72,3 +73,136 @@ Let's break down the IDL definition line by line:
 - `string reverse_string(in string str)`: This line defines a method called `reverse_string` within the `Reverse` interface. The method takes a single input parameter `str`, which is of type `string`. The `in` keyword indicates that `str` is an input parameter. The method returns a `string` result, which represents the reversed string.
 
 In summary, the IDL file defines a module named `ReverseModule` containing an interface named `Reverse`, which provides a single method `reverse_string` that takes a string as input and returns the reversed string.
+
+
+> All code
+The provided code represents a simple client-server application using CORBA (Common Object Request Broker Architecture). Here's an overview of how the code works:
+
+The ReverseModule.idl file defines a module called ReverseModule containing an interface called Reverse. The interface has one method reverse_string that takes a string as input and returns a string.
+
+The ReverseImpl.java file implements the Reverse interface. It extends the ReversePOA class, which is a base class for implementing Portable Object Adapters (POAs). In the reverse_string method, the input string is reversed using the StringBuffer class, and the reversed string is returned.
+
+The ReverseServer.java file is the server-side code. It initializes the ORB (Object Request Broker), activates the POA (Portable Object Adapter), creates an instance of the ReverseImpl class, obtains the object reference from the servant class, binds the object reference to the naming context using the name "Reverse", and starts the ORB event loop.
+
+The ReverseClient.java file is the client-side code. It initializes the ORB, obtains the naming context, resolves the object reference using the name "Reverse", prompts the user to enter a string, invokes the reverse_string method on the server-side object, and prints the reversed string.
+
+
+
+> can you write the same 4 files for String Concat operations
+
+Certainly! Here are the modified versions of the four files for performing string concatenation operations using CORBA:
+
+StringConcatModule.idl:
+```idl
+module StringConcatModule {
+    interface StringConcat {
+        string concatenate_strings(in string str1, in string str2);
+    };
+};
+```
+
+StringConcatImpl.java:
+```java
+import StringConcatModule.StringConcatPOA;
+
+class StringConcatImpl extends StringConcatPOA {
+    StringConcatImpl() {
+        super();
+        System.out.println("StringConcat Object Created");
+    }
+
+    public String concatenate_strings(String str1, String str2) {
+        return str1 + str2;
+    }
+}
+```
+
+StringConcatServer.java:
+```java
+import StringConcatModule.StringConcat;
+import org.omg.CosNaming.*;
+import org.omg.CosNaming.NamingContextPackage.*;
+import org.omg.CORBA.*;
+import org.omg.PortableServer.*;
+
+class StringConcatServer {
+    public static void main(String[] args) {
+        try {
+            // Initialize the ORB
+            org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, null);
+
+            // Initialize the POA
+            POA rootPOA = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
+            rootPOA.the_POAManager().activate();
+
+            // Create the StringConcat object
+            StringConcatImpl concatImpl = new StringConcatImpl();
+
+            // Get the object reference from the servant class
+            org.omg.CORBA.Object ref = rootPOA.servant_to_reference(concatImpl);
+
+            // Narrow the object reference to the appropriate type
+            StringConcat concatRef = StringConcatModule.StringConcatHelper.narrow(ref);
+
+            // Resolve the NameService object reference
+            org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+
+            // Bind the object reference to the naming context with the name "StringConcat"
+            String name = "StringConcat";
+            NameComponent[] path = ncRef.to_name(name);
+            ncRef.rebind(path, concatRef);
+
+            System.out.println("String Concat Server is running and waiting...");
+            orb.run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+StringConcatClient.java:
+```java
+import StringConcatModule.*;
+import org.omg.CosNaming.*;
+import org.omg.CosNaming.NamingContextPackage.*;
+import org.omg.CORBA.*;
+import java.io.*;
+
+class StringConcatClient {
+    public static void main(String args[]) {
+        StringConcat concatImpl = null;
+
+        try {
+            // Initialize the ORB
+            org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, null);
+
+            // Resolve the NameService object reference
+            org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+            NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+
+            // Resolve the StringConcat object reference using the name "StringConcat"
+            String name = "StringConcat";
+            concatImpl = StringConcatHelper.narrow(ncRef.resolve_str(name));
+
+            System.out.println("Enter first string:");
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String str1 = br.readLine();
+
+            System.out.println("Enter second string:");
+            String str2 = br.readLine();
+
+            String concatenatedStr = concatImpl.concatenate_strings(str1, str2);
+
+            System.out.println("Concatenated string: " + concatenatedStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+To run this code, you'll need to follow similar steps as before:
+
+1. Compile the IDL file using the `idlj` command
